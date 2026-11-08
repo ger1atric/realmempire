@@ -1,0 +1,315 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Realm Empires — every review builds your empire</title>
+<meta name="description" content="Realm Empires is a Civilization-style strategy game for Anki. Every card you review sends resources to your empire.">
+<meta property="og:title" content="Realm Empires">
+<meta property="og:description" content="Every review builds your empire. A Civilization-style strategy game for Anki.">
+<meta property="og:image" content="images/map.jpg">
+<style>
+  :root {
+    --bg: #0d1219; --bg2: #121a24; --panel: #17212e; --line: #26344a;
+    --text: #e6ecf3; --dim: #9fb0c6; --gold: #f0b23a; --gold2: #ffd36a;
+    --sci: #5fa8ff; --ren: #c08cf0; --land: #7cc96b; --radius: 14px;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { margin: 0; background: var(--bg); color: var(--text);
+         font: 17px/1.6 -apple-system, BlinkMacSystemFont, "Segoe UI", Inter, Helvetica, Arial, sans-serif; }
+  a { color: var(--gold); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  img { max-width: 100%; display: block; }
+  .wrap { max-width: 1180px; margin: 0 auto; padding: 0 24px; }
+
+  /* nav */
+  nav { position: sticky; top: 0; z-index: 10; background: rgba(13,18,25,.86); backdrop-filter: blur(8px);
+        border-bottom: 1px solid var(--line); }
+  nav .wrap { display: flex; align-items: center; gap: 28px; height: 60px; }
+  .logo { display: flex; align-items: center; gap: 10px; font-weight: 700; font-size: 18px; color: var(--text); }
+  .logo svg { width: 26px; height: 26px; }
+  nav .links { margin-left: auto; display: flex; gap: 24px; font-size: 15px; }
+  nav .links a { color: var(--dim); }
+  nav .links a:hover { color: var(--text); text-decoration: none; }
+
+  /* hero */
+  .hero { padding: 72px 0 40px; text-align: center;
+          background: radial-gradient(1100px 500px at 50% -10%, rgba(240,178,58,.14), transparent 70%); }
+  .eyebrow { color: var(--gold); font-size: 13px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; }
+  h1 { font-size: clamp(38px, 6vw, 64px); line-height: 1.05; margin: 14px 0 18px; letter-spacing: -.02em; }
+  h1 span { color: var(--gold); }
+  .lede { max-width: 720px; margin: 0 auto 30px; color: var(--dim); font-size: 19px; }
+  .cta { display: inline-flex; gap: 12px; flex-wrap: wrap; justify-content: center; }
+  .btn { display: inline-flex; align-items: center; gap: 8px; padding: 13px 22px; border-radius: 10px;
+         font-weight: 650; font-size: 16px; border: 1px solid var(--line); color: var(--text); background: var(--panel); }
+  .btn:hover { text-decoration: none; border-color: #3a4c66; }
+  .btn.primary { background: var(--gold); color: #1d1405; border-color: var(--gold); }
+  .btn.primary:hover { background: var(--gold2); }
+  .shot { border-radius: var(--radius); border: 1px solid var(--line); overflow: hidden; cursor: zoom-in;
+          box-shadow: 0 30px 80px rgba(0,0,0,.55); background: var(--bg2); }
+  .hero .shot { margin: 54px auto 0; max-width: 1120px; }
+
+  /* sections */
+  section { padding: 76px 0; }
+  section.alt { background: var(--bg2); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+  h2 { font-size: clamp(28px, 3.6vw, 38px); line-height: 1.15; margin: 10px 0 14px; letter-spacing: -.01em; }
+  .center { text-align: center; }
+  .sub { color: var(--dim); max-width: 700px; margin: 0 auto; }
+  .cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin-top: 40px; }
+  .card { background: var(--panel); border: 1px solid var(--line); border-radius: var(--radius); padding: 24px; }
+  .card h3 { margin: 10px 0 6px; font-size: 19px; }
+  .card p { margin: 0; color: var(--dim); font-size: 16px; }
+  .icon { width: 40px; height: 40px; border-radius: 10px; display: grid; place-items: center; font-size: 20px; }
+
+  .feature { display: grid; grid-template-columns: 5fr 7fr; gap: 48px; align-items: center; margin-top: 64px; }
+  .feature.flip { grid-template-columns: 7fr 5fr; }
+  .feature.flip .text { order: 2; }
+  .feature > *, .cards > *, .wins > *, .steps > * { min-width: 0; }   /* wide screenshots can't stretch a column */
+  .feature .text h3 { font-size: 26px; margin: 8px 0 12px; line-height: 1.2; }
+  .feature .text p { color: var(--dim); margin: 0 0 12px; }
+  .feature ul { margin: 6px 0 0; padding-left: 20px; color: var(--dim); }
+  .feature li { margin: 4px 0; }
+  .tag { font-size: 12px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; }
+  .tag.sci { color: var(--sci); } .tag.ren { color: var(--ren); } .tag.land { color: var(--land); } .tag.gold { color: var(--gold); }
+
+  .wins { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin-top: 40px; }
+  .win { border-radius: var(--radius); padding: 26px; background: var(--panel); border: 1px solid var(--line);
+         border-top: 3px solid var(--c); }
+  .win h3 { margin: 0 0 8px; color: var(--c); font-size: 21px; }
+  .win p { margin: 0; color: var(--dim); font-size: 16px; }
+
+  .steps { counter-reset: s; display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin-top: 36px; }
+  .step { background: var(--panel); border: 1px solid var(--line); border-radius: var(--radius); padding: 24px; }
+  .step::before { counter-increment: s; content: counter(s); display: grid; place-items: center; width: 34px; height: 34px;
+                  border-radius: 50%; background: rgba(240,178,58,.14); color: var(--gold); font-weight: 700; margin-bottom: 12px; }
+  .step h3 { margin: 0 0 6px; font-size: 18px; }
+  .step p { margin: 0; color: var(--dim); font-size: 16px; }
+  kbd { font: 13px ui-monospace, Menlo, monospace; background: #0b1017; border: 1px solid var(--line); border-radius: 5px; padding: 1px 6px; color: var(--text); }
+
+  footer { padding: 40px 0 60px; color: var(--dim); font-size: 14px; border-top: 1px solid var(--line); }
+  footer .wrap { display: flex; flex-wrap: wrap; gap: 12px 24px; justify-content: space-between; }
+
+  /* lightbox */
+  #lb { position: fixed; inset: 0; background: rgba(5,8,12,.92); display: none; align-items: center; justify-content: center;
+        z-index: 50; padding: 24px; cursor: zoom-out; }
+  #lb.on { display: flex; }
+  #lb img { max-width: 96vw; max-height: 92vh; border-radius: 10px; box-shadow: 0 20px 70px rgba(0,0,0,.6); }
+
+  @media (max-width: 860px) {
+    .cards, .wins, .steps { grid-template-columns: 1fr; }
+    .feature, .feature.flip { grid-template-columns: 1fr; gap: 22px; margin-top: 48px; }
+    .feature.flip .text { order: 0; }
+    nav .links { display: none; }
+    section { padding: 56px 0; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <a class="logo" href="#top">
+      <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 1L14.06 4.5V11.5L8 15L1.94 11.5V4.5Z" fill="#7cc96b"/><path d="M8 3.8L11.64 5.9V10.1L8 12.2L4.36 10.1V5.9Z" fill="none" stroke="#b6e3a5"/><path d="M5.4 10.6L8 6.4L10.6 10.6Z" fill="#3f7a35"/></svg>
+      Realm Empires
+    </a>
+    <div class="links">
+      <a href="#how">How it works</a>
+      <a href="#features">Features</a>
+      <a href="#victories">Victories</a>
+      <a href="#start">Get started</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero" id="top">
+  <div class="wrap">
+    <div class="eyebrow">A strategy game for Anki</div>
+    <h1>Every review builds <span>your empire.</span></h1>
+    <p class="lede">Realm Empires turns your daily Anki reviews into a Civilization-style strategy game. Found cities, research technologies, raise wonders and race your friends to victory, using the cards you were going to study anyway.</p>
+    <div class="cta">
+      <a class="btn primary" href="downloads/RealmEmpires-0.56.24.ankiaddon" download>Download for Anki</a>
+      <a class="btn" href="#how">How it works</a>
+    </div>
+    <div class="shot" data-full="images/map.jpg"><img src="images/map.jpg" alt="A mid-game empire: four cities with libraries, wonders and districts on a hex map" loading="eager"></div>
+  </div>
+</header>
+
+<section id="how">
+  <div class="wrap center">
+    <div class="eyebrow">Study to play</div>
+    <h2>Your reviews are the game's engine</h2>
+    <p class="sub">Every card you answer sends resources to your empire. Cities grow, buildings rise and units move as you study.</p>
+    <div class="cards" style="text-align:left">
+      <div class="card">
+        <div class="icon" style="background:rgba(95,168,255,.14)">📚</div>
+        <h3>Measured against you</h3>
+        <p>Everyone is scored against their own usual workload, so a light reviewer can go head to head with a heavy one.</p>
+      </div>
+      <div class="card">
+        <div class="icon" style="background:rgba(124,201,107,.14)">📱</div>
+        <h3>Phone reviews count</h3>
+        <p>Reviews from AnkiMobile, AnkiDroid or AnkiWeb count as soon as your collection syncs.</p>
+      </div>
+      <div class="card">
+        <div class="icon" style="background:rgba(240,178,58,.14)">⏳</div>
+        <h3>No one needs to be online</h3>
+        <p>Games last one to two weeks for 2 to 6 players. Your empire moves forward whenever you study.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="alt" id="features">
+  <div class="wrap">
+    <div class="center">
+      <div class="eyebrow">Build a civilization</div>
+      <h2>Cities, districts and wonders on a living map</h2>
+      <p class="sub">Every game is a new map with rivers, volcanoes, hidden villages and natural wonders. You decide where every building stands.</p>
+    </div>
+
+    <div class="feature">
+      <div class="text">
+        <div class="tag gold">Cities</div>
+        <h3>Grow your cities, tile by tile</h3>
+        <p>Citizens work the land around each city. Place Libraries, Markets and Museums on the tiles where they fit, and fill your Archives and Museums with Works of art and writing.</p>
+        <ul>
+          <li>Every building shows what it adds before you build it</li>
+          <li>Buy land, improve it with Builders and protect it</li>
+        </ul>
+      </div>
+      <div class="shot" data-full="images/build.jpg"><img src="images/build.jpg" alt="Palo Alto's city card with Works and building options" loading="lazy"></div>
+    </div>
+
+    <div class="feature flip">
+      <div class="text">
+        <div class="tag sci">Research</div>
+        <h3>A tech tree from Pottery to Chemistry</h3>
+        <p>Nearly 50 technologies, each with a Eureka goal that makes it cheaper. Chemistry unlocks the Research Lab and the Global Clinical Trial, the last step to a Science win.</p>
+        <ul>
+          <li>Hover any technology to see what it unlocks</li>
+          <li>Research Labs turn gold into science</li>
+        </ul>
+      </div>
+      <div class="shot" data-full="images/tree.jpg"><img src="images/tree.jpg" alt="The tech tree with Chemistry leading to the Global Clinical Trial" loading="lazy"></div>
+    </div>
+
+    <div class="feature">
+      <div class="text">
+        <div class="tag gold">Discovery</div>
+        <h3>Natural wonders and hidden villages</h3>
+        <p>Scouts uncover the map. Find a natural wonder like Mount Remembrance and its bonus is yours for the rest of the game.</p>
+      </div>
+      <div class="shot" data-full="images/wonder.jpg"><img src="images/wonder.jpg" alt="Discovering the natural wonder Mount Remembrance" loading="lazy"></div>
+    </div>
+  </div>
+</section>
+
+<section id="victories">
+  <div class="wrap">
+    <div class="center">
+      <div class="eyebrow">Choose your path</div>
+      <h2>Three ways to win</h2>
+      <p class="sub">Switch strategies at any time. The first player to win any of the three takes the game.</p>
+    </div>
+    <div class="wins">
+      <div class="win" style="--c: var(--sci)">
+        <h3>Science</h3>
+        <p>Research Chemistry, then complete the Global Clinical Trial. Libraries, Observatories and Stanford University speed you along.</p>
+      </div>
+      <div class="win" style="--c: var(--ren)">
+        <h3>Renown</h3>
+        <p>Fill your cities with great art and writing, build Monuments and Amphitheaters, and send Envoys on cultural missions.</p>
+      </div>
+      <div class="win" style="--c: var(--land)">
+        <h3>Frontier</h3>
+        <p>Claim more land than anyone else and keep enough gold to pay its upkeep every night.</p>
+      </div>
+    </div>
+
+    <div class="feature flip">
+      <div class="text">
+        <div class="tag gold">The race</div>
+        <h3>Always know where you stand</h3>
+        <p>The Race tab shows every player's progress toward each victory. Build an Observatory, Consulate or Watchtower to see your rivals' numbers.</p>
+      </div>
+      <div class="shot" data-full="images/race.jpg"><img src="images/race.jpg" alt="The Race tab with standings and Science Victory progress" loading="lazy"></div>
+    </div>
+
+    <div class="feature">
+      <div class="text">
+        <div class="tag ren">Espionage</div>
+        <h3>Fight back when rivals pull ahead</h3>
+        <p>Send Spies to sabotage research, steal a Work of art or incite a revolt. Warriors raid land and Outposts push into rival borders.</p>
+      </div>
+      <div class="shot" data-full="images/espionage.jpg"><img src="images/espionage.jpg" alt="The Espionage window with missions against a rival" loading="lazy"></div>
+    </div>
+  </div>
+</section>
+
+<section class="alt">
+  <div class="wrap">
+    <div class="feature flip" style="margin-top:0">
+      <div class="text">
+        <div class="tag sci">While you study</div>
+        <h3>Your empire, right on the review screen</h3>
+        <p>A small readout in the corner shows today's progress, what's about to finish and how the race stands, so you can keep studying without opening the game.</p>
+      </div>
+      <div class="shot" data-full="images/hud.jpg"><img src="images/hud.jpg" alt="The review screen with the Realm Empires readout open" loading="lazy"></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap center">
+    <div class="eyebrow">Hand-drawn art</div>
+    <h2>Every building and wonder has its own look</h2>
+    <p class="sub">From the Library's domed reading room to Stanford University's Hoover Tower and the Sydney Opera House.</p>
+    <div class="shot" data-full="images/art.jpg" style="margin-top:36px"><img src="images/art.jpg" alt="Gallery of building and wonder art" loading="lazy"></div>
+  </div>
+</section>
+
+<section class="alt" id="start">
+  <div class="wrap center">
+    <div class="eyebrow">Get started</div>
+    <h2>Play your first game in minutes</h2>
+    <div class="steps" style="text-align:left">
+      <div class="step">
+        <h3>Install</h3>
+        <p>Download the add-on, then in Anki choose <kbd>Tools → Add-ons → Install from file</kbd> and restart.</p>
+      </div>
+      <div class="step">
+        <h3>Practice</h3>
+        <p>Open <kbd>Tools → Realm Empires</kbd> (<kbd>Ctrl+Shift+E</kbd>, or <kbd>Cmd+Shift+E</kbd> on a Mac) and play the short guided Practice game.</p>
+      </div>
+      <div class="step">
+        <h3>Invite friends</h3>
+        <p>Start a real game and share its code, join a public game, or fill the seats with computer players.</p>
+      </div>
+    </div>
+    <div class="cta" style="margin-top:36px">
+      <a class="btn primary" href="downloads/RealmEmpires-0.56.24.ankiaddon" download>Download Realm Empires 0.56.24</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <span>Realm Empires · an add-on for <a href="https://apps.ankiweb.net/">Anki</a></span>
+    <span>Screenshots from a staged practice game.</span>
+  </div>
+</footer>
+
+<div id="lb" role="dialog" aria-label="Screenshot"><img alt=""></div>
+<script>
+  var lb = document.getElementById("lb"), lbImg = lb.querySelector("img");
+  document.querySelectorAll(".shot").forEach(function (s) {
+    s.addEventListener("click", function () {
+      lbImg.src = s.getAttribute("data-full"); lbImg.alt = s.querySelector("img").alt; lb.className = "on";
+    });
+  });
+  lb.addEventListener("click", function () { lb.className = ""; });
+  document.addEventListener("keydown", function (e) { if (e.key === "Escape") lb.className = ""; });
+</script>
+</body>
+</html>
