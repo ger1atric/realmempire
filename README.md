@@ -9,20 +9,20 @@ screenshots in `images/`, and the add-on package in `downloads/`.
 
 ## Publish it on GitHub Pages
 
-1. Create an empty repository on GitHub, for example `realm-empires`.
+1. Create an empty repository on GitHub, here `realmempire`.
 2. From this folder:
 
    ```bash
    git init -b main
    git add .
    git commit -m "Realm Empires site"
-   git remote add origin https://github.com/<you>/realm-empires.git
+   git remote add origin https://github.com/ger1atric/realmempire.git
    git push -u origin main
    ```
 
 3. On GitHub, open **Settings → Pages**, set **Source** to *Deploy from a branch*, branch
    `main`, folder `/ (root)`, and save. The site appears at
-   `https://<you>.github.io/realm-empires/` within a minute or two.
+   `https://ger1atric.github.io/realmempire/` within a minute or two.
 
 ## Updating
 
