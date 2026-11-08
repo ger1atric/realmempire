@@ -4,31 +4,20 @@
 
 ![Realm Empires map](images/map.jpg)
 
-This repository is the game's website (GitHub Pages). It is plain HTML: `index.html`, the
-screenshots in `images/`, and the add-on package in `downloads/`.
+Realm Empires turns your daily Anki reviews into a strategy game. Found cities, research
+technologies, raise wonders and race your friends to victory, using the cards you were going
+to study anyway.
 
-## Publish it on GitHub Pages
+- **Study to play.** Every card you review sends resources to your empire. Everyone is scored
+  against their own usual workload, and phone reviews count once your collection syncs.
+- **Three ways to win.** Science, Renown or Frontier. The first player to win any of them takes
+  the game.
+- **Play on your own time.** Games last one to two weeks for 2 to 6 players, with friends or
+  computer players.
 
-1. Create an empty repository on GitHub, here `realmempire`.
-2. From this folder:
-
-   ```bash
-   git init -b main
-   git add .
-   git commit -m "Realm Empires site"
-   git remote add origin https://github.com/ger1atric/realmempire.git
-   git push -u origin main
-   ```
-
-3. On GitHub, open **Settings → Pages**, set **Source** to *Deploy from a branch*, branch
-   `main`, folder `/ (root)`, and save. The site appears at
-   `https://ger1atric.github.io/realmempire/` within a minute or two.
-
-## Updating
-
-- New version: replace the file in `downloads/` and update the two download links in
-  `index.html` (search for `.ankiaddon`).
-- New screenshots: replace the JPEGs in `images/` with the same names.
+**[Download Realm Empires 0.56.24](downloads/RealmEmpires-0.56.24.ankiaddon)**, then in Anki
+choose **Tools → Add-ons → Install from file** and restart. Open **Tools → Realm Empires**
+(Ctrl+Shift+E, or Cmd+Shift+E on a Mac) and start with the guided Practice game.
 
 ## Screenshots
 
